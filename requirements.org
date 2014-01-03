@@ -51,6 +51,7 @@
    - [ ] static/index.html displays the current state of the webservice
    - [ ] static/index.html responds to clicks within 100ms on average
    - [ ] Make static/index.html images look nice
+   - [ ] implement anything marked XXX TODO: in static/index.html
 
  
 ** Restrictions
@@ -79,7 +80,7 @@
    - Marks will be deducted for using library code that does the assignment
 
 ** Marking
-   - 4 marks for passing all of the tests except testInternetGets
+   - 4 marks for passing all of the tests 
    - 2 marks for being usable in the browser
    - 1 mark for looking better than what I gave you
      

@@ -1,0 +1,89 @@
+* Explore using AJAX to make a shared state interactive application
+** Description
+
+   Your task is to fill in the blanks and connect your browser to your
+   webservice via AJAX. We won't be using XML here unless you want
+   to. I recommend JSON.
+
+   Your task is to get this shared drawing program to work using AJAX.
+
+   This program allows numerous clients to connect and draw on the
+   same surface and share the drawing they have made with anyone who
+   is currently on.
+
+   The goal here is for you to understand the very basics of AJAX,
+   learn a little about canvas, learn a little bit about the overhead
+   of AJAX, learn about JSON and other technologies. Also you'll get
+   to learn about the flask micro-framework.
+
+** Collaboration
+   - You may consult with others but the submission should be your
+     own source code.
+   - You may work (pair program) with 1 other person, but both of you
+     need to submit your work separately.
+   - Collaboration must be documented in the README.md file
+   - Any external source code must be referenced and documented in
+     the README.md file
+
+** User Stories
+   - As a web browser user I want to draw on the canvas
+   - As a web browser user I want to see others drawing on the canvas
+   - As a web browser user I want the system to be responsive to my
+     actions (< 100ms)
+   - As a web browser user I want to watch as other users draw on the
+     canvas
+   - As a web service user I want to get access to the world
+   - As a web service user I want to post entities that have at least
+     'x' and 'y' co-ordinates
+   - As a web service user I will probably ping the system a lot to
+     get updates.
+
+** Requirements
+
+   - [ ] Implement the AJAX Javascript parts in the HTML file static/index.htm
+   - [ ] Implement the webservice root
+   - [ ] Implement the webservice /entity/entity-name POST/PUT/GET API
+   - [ ] Implement the webservice /world API
+   - [ ] Implement the webservice /clear API
+   - [ ] Use JSON or XML to communicate (no plain text!)
+   - [ ] The webservice can pass all the tests in freetests.py
+   - [ ] The webservice can serve /static/index.html
+   - [ ] static/index.html displays the current state of the webservice
+   - [ ] static/index.html responds to clicks within 100ms on average
+
+ 
+** Restrictions
+   - [ ] Use Python 2.7
+   - [ ] Must run in the undergrad lab (Ubuntu 12.04)
+   - [ ] License your code properly (use an OSI approved license)
+     - Put your name on it!
+
+** Recommendations
+   - Use the server.py skeleton. Handling sockets yourself is not
+     that fun
+   - Keep it short, keep it modular
+   - READ the spec, read the format of a request
+   - It's a good idea to send the Host header in a GET or POST
+
+** Submission Instructions
+   - Fork my repository from github
+     https://github.com/abramhindle/CMPUT404-assignment-ajax
+   - Push your commits to your fork
+   - In EClass for this assignment submit a URL to the git
+     repository. I would prefer github for the host.
+     - Line 1: the git URL
+     - Line 2: Your CCID
+     - Line 3: Your collaborator's CCID
+
+   - To mark your assignment I should be able to type:
+     git clone http://github.com/youruserid/thisassignment.git yourccid
+     cd yourccid
+     python freetests.py
+
+   - Marks will be deducted if I cannot successfully do this.
+     
+   - Marks will be deducted for using library code that does the assignment
+
+** Marking
+   - 5 marks for passing all of the tests except testInternetGets
+   - 2 marks for passing testInternetGets

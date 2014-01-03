@@ -50,6 +50,7 @@
    - [ ] The webservice can serve /static/index.html
    - [ ] static/index.html displays the current state of the webservice
    - [ ] static/index.html responds to clicks within 100ms on average
+   - [ ] Make static/index.html images look nice
 
  
 ** Restrictions
@@ -57,13 +58,6 @@
    - [ ] Must run in the undergrad lab (Ubuntu 12.04)
    - [ ] License your code properly (use an OSI approved license)
      - Put your name on it!
-
-** Recommendations
-   - Use the server.py skeleton. Handling sockets yourself is not
-     that fun
-   - Keep it short, keep it modular
-   - READ the spec, read the format of a request
-   - It's a good idea to send the Host header in a GET or POST
 
 ** Submission Instructions
    - Fork my repository from github
@@ -85,5 +79,7 @@
    - Marks will be deducted for using library code that does the assignment
 
 ** Marking
-   - 5 marks for passing all of the tests except testInternetGets
-   - 2 marks for passing testInternetGets
+   - 4 marks for passing all of the tests except testInternetGets
+   - 2 marks for being usable in the browser
+   - 1 mark for looking better than what I gave you
+     

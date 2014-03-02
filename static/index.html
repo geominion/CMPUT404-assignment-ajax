@@ -30,7 +30,12 @@ var host = window.location.host;
 var context = canvas.getContext("2d");
 var W = canvas.width  = window.innerWidth-6;
 var H = canvas.height = window.innerHeight-50;
-
+var colourIndex = 0;
+var upIndex = 0;
+var downIndex = 0;
+var colours = ["#FF6600", "#FF9900", "#FFCC00", "#FFFF00", "#CCFF00", "#CC6600", "#CC9900", "#CCCC00", "#99FF00", "#99CC00", "#33FF00", "#33CC00", "#339900", "#336600", "#006600", "#009900", "#339900", "#669900", "#999900", "#99CC00", "#99FF00"];
+var uppers = ["#CC0000", "#FF0000", "#FF0033", "#FF0066", "#FF0099", "#FF00CC", "#FF00FF"];
+var downers = ["#990099", "#9900CC", "#9900FF", "#660099", "#6600CC", "#6600FF", "#330099", "#3300CC", "#3300FF"];
 
 function sendJSONXMLHTTPRequest(url, objects, callback) {
     var xhr = new XMLHttpRequest();
@@ -248,18 +253,29 @@ mouse = (function() {
 // Add the application specific mouse listeners!
 //XXX: TODO Make these prettier!
 mouse.mousedowners.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'blue'});
+    addEntityWithoutName({'x':x,'y':y,'colour':downers[downIndex]});
+    ++downIndex;
+    if (downIndex > 8) {
+        downIndex = 0;
+    }
 });
 
 mouse.mouseuppers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'red'});
+    addEntityWithoutName({'x':x,'y':y,'colour':uppers[upIndex]});
+    ++upIndex;
+    if (upIndex > 6) {
+        upIndex = 0;
+    }
 });
 
 mouse.mousedraggers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'green',
+    addEntityWithoutName({'x':x,'y':y,'colour':colours[colourIndex],
                           'radius':10});
+    ++colourIndex;
+    if (colourIndex > 20) {
+        colourIndex = 0;
+    }
 });
-
 
 function update() {
     //XXX: TODO Get the world from the webservice using a XMLHTTPRequest

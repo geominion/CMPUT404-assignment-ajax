@@ -39,11 +39,13 @@ var downers = ["#990099", "#9900CC", "#9900FF", "#660099", "#6600CC", "#6600FF",
 
 function sendJSONXMLHTTPRequest(url, objects, callback) {
     var xhr = new XMLHttpRequest();
+    data = JSON.stringify(objects);
+    alert(data);
     xhr.onreadystatechange = function () {
         if (xhr.readyState==4) {
             try {
                 if (xhr.status==200) {
-                    
+                    callback();
                     //XXX: parse some JSON from the request!
                     //XXX: Pass the data to the callback!
                 }
@@ -55,7 +57,11 @@ function sendJSONXMLHTTPRequest(url, objects, callback) {
     };
     //XXX: POST to a URL
     //XXX: set the mimetype and the accept headers!
-    // Remember to use application/json !
+    // Remember to use application/json ! 
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.setRequestHeader("Content-length", data.length);
+    xhr.send(data);
 }
 
 
@@ -141,10 +147,11 @@ function getPosition(e) {
 
 
 function addEntity(entity, data) {
-    world[entity] = data;
-    drawNextFrame(); // (but should we?)
+    var url = "http://127.0.0.1:5000/entity/" + entity;
+    sendJSONXMLHTTPRequest(url, data, update());
+    // (but should we?)
     //XXX: Send a XHTML Request that updates the entity you just  modified!
-
+    
 }
 
 var counter = 0;
@@ -279,6 +286,22 @@ mouse.mousedraggers.push(function(x,y,clicked,e) {
 
 function update() {
     //XXX: TODO Get the world from the webservice using a XMLHTTPRequest
+    var url = "http://127.0.0.1:5000/world"
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState==4) {
+            try {
+                if (xhr.status==200) {
+                    world = xhr.json
+                }
+            } 
+            catch(e) {
+                alert('Error: ' + e.name);
+            }
+        }
+    };
+    xhr.open("GET",url, true);
+    xhr.send();
     drawFrame();
 }
 

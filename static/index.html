@@ -40,13 +40,12 @@ var downers = ["#990099", "#9900CC", "#9900FF", "#660099", "#6600CC", "#6600FF",
 function sendJSONXMLHTTPRequest(url, objects, callback) {
     var xhr = new XMLHttpRequest();
     data = JSON.stringify(objects);
-    alert(data);
     xhr.onreadystatechange = function () {
         if (xhr.readyState==4) {
             try {
                 if (xhr.status==200) {
                     callback();
-                    //XXX: parse some JSON from the request!
+                    //XXX: parse some JSON from the request! whatever for?
                     //XXX: Pass the data to the callback!
                 }
             } 
@@ -147,8 +146,9 @@ function getPosition(e) {
 
 
 function addEntity(entity, data) {
-    var url = "http://127.0.0.1:5000/entity/" + entity;
-    sendJSONXMLHTTPRequest(url, data, update());
+    world[entity] = data;
+    var url = "/entity/" + entity;
+    sendJSONXMLHTTPRequest(url, data, update);
     // (but should we?)
     //XXX: Send a XHTML Request that updates the entity you just  modified!
     
@@ -292,7 +292,8 @@ function update() {
         if (xhr.readyState==4) {
             try {
                 if (xhr.status==200) {
-                    world = xhr.json
+                    world = JSON.parse(xhr.responseText);
+                    drawNextFrame()
                 }
             } 
             catch(e) {
